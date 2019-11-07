@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Beer {
-    public class apiMedia {
         @SerializedName("id")
         private int id;
         @SerializedName("name")
@@ -32,5 +31,4 @@ public class Beer {
         private String tips;
         @SerializedName("yeast")
         private String yeast;
-    }
 }

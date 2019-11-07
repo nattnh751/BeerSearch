@@ -23,12 +23,7 @@ class ApiHelper {
             public void onResponse(Call<ArrayList<Beer>> call, Response<ArrayList<Beer>> response) {
                 final GetBeerResponse finalRes = new GetBeerResponse();
                 finalRes.beers = response.body();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.GetBeerComplete(finalRes);
-                    }
-                }).start();
+                callback.GetBeerComplete(finalRes);
             }
             @Override
             public void onFailure(Call<ArrayList<Beer>> call, Throwable t) {

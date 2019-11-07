@@ -1,8 +1,8 @@
 package com.beer.discover;
 
-import java.util.Collection;
+import java.util.List;
 
 class GetBeerResponse {
-    public Collection<Beer> beers;
+    public List<Beer> beers;
 
 }

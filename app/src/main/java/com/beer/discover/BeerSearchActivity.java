@@ -2,6 +2,7 @@ package com.beer.discover;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BeerSearchActivity extends MainActivity implements BeerFragmentListener, SearchResultsCallBack {
     private ProgressBar loadingProgressBar;
@@ -24,6 +26,15 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
     private void showBeerSearchView() {
         loadingProgressBar = findViewById(R.id.loader);
         loadingProgressBar.setVisibility(View.VISIBLE);
+        ApiHelper.searchForBeerWithName(this, new SearchResultsCallBack() {
+            @Override
+            public void GetBeerComplete(GetBeerResponse response) {
+                for (final Beer beer :response.beers) {
+                    Log.i("", "");
+                }
+            }
+        }, "test");
+
         LoadTask loadTask = new LoadTask();
         loadTask.execute();
     }
@@ -35,7 +46,7 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
 
     @Override
     public void GetBeerComplete(GetBeerResponse response) {
-        beerModel.setBeers(response.beers);
+        beerModel.setBeers((List<? extends Beer>) response.beers);
     }
 
     private class LoadTask extends AsyncTask<String, Void, BeerFragmentModel> {
