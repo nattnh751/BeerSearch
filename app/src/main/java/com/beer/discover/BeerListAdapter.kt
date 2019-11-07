@@ -17,17 +17,18 @@ public class BeerListAdapter(val items: List<BeerItemListResource>,val activity:
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        var item = items.get(position)
+        holder.title!!.text = item.title
+        holder.description!!.text = item.descriptions
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent)
+        return ViewHolder(LayoutInflater.from(activity).inflate(R.layout.beer_list_item, parent, false))
     }
     inner class ViewHolder
 
     internal constructor(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
-        var image: ImageView? = view.findViewById(R.id.image)
         var description: TextView? = view.findViewById(R.id.description)
         var title: TextView? = view.findViewById(R.id.title)
         init {

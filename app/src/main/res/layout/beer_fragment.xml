@@ -10,17 +10,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_toLeftOf="@+id/searchButton"
-        android:id="@+id/searchBar"/>
-    <Button
-        android:layout_width="105dp"
-        android:background="#000000"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:text="Search"
-        android:id="@+id/searchButton"
-        android:textColor="#FFFFFF"
-        android:layout_height="64dp"/>
+        android:id="@+id/searchBar"/>    s
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

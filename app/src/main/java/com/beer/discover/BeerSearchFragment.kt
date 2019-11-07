@@ -65,12 +65,12 @@ class BeerSearchFragment : Fragment() {
     private fun createListItemsFromModel(): List<BeerItemListResource> {
         var beerlistitems = arrayListOf<BeerItemListResource>();
         for (beir in this.model.beers) {
-            beerlistitems.add(BeerItemListResource(beir.name,beir.description,beir.image_url))
+            beerlistitems.add(BeerItemListResource(beir.name,beir.description))
         }
         return beerlistitems
     }
 }
 
-class BeerItemListResource(val title: String, val descriptions: String, val imageUrl: String) {
+class BeerItemListResource(val title: String, val descriptions: String) {
 
 }
