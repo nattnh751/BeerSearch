@@ -39,7 +39,9 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
     @Override
     public void GetBeerComplete(GetBeerResponse response) {
         loadingProgressBar.setVisibility(View.GONE);
-        beerModel.setBeers( response.beers);
+        if(response.beers != null) {
+            beerModel.setBeers( response.beers);
+        }
     }
 
     private class LoadTask extends AsyncTask<String, Void, BeerFragmentModel> {
