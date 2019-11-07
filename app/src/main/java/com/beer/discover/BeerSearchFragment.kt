@@ -59,5 +59,18 @@ class BeerSearchFragment : Fragment() {
                 viewListener.onSearchTextUpdated(p0.toString())
             }
         })
+        beerList.adapter = activity?.let { BeerListAdapter(createListItemsFromModel(), it) };
     }
+
+    private fun createListItemsFromModel(): List<BeerItemListResource> {
+        var beerlistitems = arrayListOf<BeerItemListResource>();
+        for (beir in this.model.beers) {
+            beerlistitems.add(BeerItemListResource(beir.name,beir.description,beir.image_url))
+        }
+        return beerlistitems
+    }
+}
+
+class BeerItemListResource(val title: String, val descriptions: String, val imageUrl: String) {
+
 }

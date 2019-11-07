@@ -10,25 +10,25 @@ import java.util.Map;
 
 public class Beer {
         @SerializedName("id")
-        private int id;
+        int id;
         @SerializedName("name")
-        private String name;
+        String name;
         @SerializedName("tagline")
-        private String tagline;
+        String tagline;
         @SerializedName("first_brewed")
-        private String first_brewed;
+        String first_brewed;
         @SerializedName("description")
-        private String description;
+        String description;
         @SerializedName("image_url")
-        private String image_url;
+        String image_url;
         @SerializedName("abv")
-        private String abv;
+        String abv;
         @SerializedName("ibu")
-        private String ibu;
+        String ibu;
         @SerializedName("food_pairing")
-        private List<String> pairing;
+        List<String> pairing;
         @SerializedName("brewers_tips")
-        private String tips;
+        String tips;
         @SerializedName("yeast")
-        private String yeast;
+        String yeast;
 }
