@@ -4,13 +4,18 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.system.Os.bind
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class BeerSearchFragment : Fragment() {
     lateinit var model: BeerFragmentModel
@@ -24,29 +29,14 @@ class BeerSearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        if (resources.getBoolean(R.bool.hotdogStyleMixMediaScreen) || resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            mainSplitView.orientation = LinearLayout.HORIZONTAL
-//        } else {
-//            mainSplitView.orientation = LinearLayout.VERTICAL
-//        }
-//        try {
-//            if (placeholderView == null) {
-//                placeholderView = view.findViewById(R.id.placeholderWebView) as WebView
-//                placeholderView!!.settings.domStorageEnabled = true
-//                placeholderView!!.settings.javaScriptEnabled = true
-//            }
-//            if (::model.isInitialized) {
-//                bind()
-//                model.addListener(BaseModel.ChangeEvent.EDIT_MODE_CHANGED, updateEditMode)
-//                model.addListener(SplitPanelModel.ChangeEvent.MEDIA_LIST_UPDATED, updateMediaList)
-//                model.addListener(SplitPanelModel.ChangeEvent.CATEGORY_LIST_UPDATED, updateCategoryList)
-//                model.addListener(SplitPanelModel.ChangeEvent.HEADER_UPDATE, updateHeader)
-//                model.addListener(SplitPanelModel.ChangeEvent.PLACE_HOLDER, placeholderUpdate)
-//            }
-//        } catch (e: NoSuchFieldError) {
-//            e.printStackTrace()
-//            Toast.makeText(context, "Missing Necessary View in Heirarchy", Toast.LENGTH_LONG).show()
-//        }
+        bindViews()
     }
+    private fun bindViews() {
+        val beerList = view!!.findViewById<View>(R.id.beerList) as RecyclerView
+        beerList.layoutManager = LinearLayoutManager(context)
+//        val adapter = CategoryListAdapter(activity!!, getBeerListItems()!!,)
+//        beerList.adapter = adapter
+        }
 
+    }
 }
