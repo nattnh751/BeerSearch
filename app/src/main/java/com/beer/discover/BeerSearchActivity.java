@@ -26,27 +26,20 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
     private void showBeerSearchView() {
         loadingProgressBar = findViewById(R.id.loader);
         loadingProgressBar.setVisibility(View.VISIBLE);
-        ApiHelper.searchForBeerWithName(this, new SearchResultsCallBack() {
-            @Override
-            public void GetBeerComplete(GetBeerResponse response) {
-                for (final Beer beer :response.beers) {
-                    Log.i("", "");
-                }
-            }
-        }, "test");
-
         LoadTask loadTask = new LoadTask();
         loadTask.execute();
     }
 
     @Override
     public void onSearchTextUpdated(@NotNull String v) {
-        ApiHelper.searchForBeerWithName(this, this, "HIyaBUddy");
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        ApiHelper.searchForBeerWithName(this, this, v);
     }
 
     @Override
     public void GetBeerComplete(GetBeerResponse response) {
-        beerModel.setBeers((List<? extends Beer>) response.beers);
+        loadingProgressBar.setVisibility(View.GONE);
+        beerModel.setBeers( response.beers);
     }
 
     private class LoadTask extends AsyncTask<String, Void, BeerFragmentModel> {
