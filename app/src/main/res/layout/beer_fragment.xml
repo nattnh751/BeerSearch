@@ -3,13 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_toLeftOf="@+id/searchButton"
         android:id="@+id/searchBar"/>    s
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -18,5 +17,5 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:id="@+id/beerList"
-        android:layout_below="@+id/searchButton"/>
+        android:layout_below="@+id/searchBar"/>
 </RelativeLayout>

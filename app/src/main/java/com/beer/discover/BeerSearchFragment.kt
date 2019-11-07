@@ -43,11 +43,6 @@ class BeerSearchFragment : Fragment() {
         beerList.layoutManager = LinearLayoutManager(context)
         val searchBox = view!!.findViewById<View>(R.id.searchBar) as EditText
         beerList.layoutManager = LinearLayoutManager(context)
-        val searchButton = view!!.findViewById<View>(R.id.searchButton)
-        beerList.layoutManager = LinearLayoutManager(context)
-        searchButton.setOnClickListener(View.OnClickListener {
-            //button was clicked to execute search
-        })
         searchBox.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
             }
