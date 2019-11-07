@@ -36,7 +36,7 @@ class BeerSearchFragment : Fragment() {
         beerList.layoutManager = LinearLayoutManager(context)
 //        val adapter = CategoryListAdapter(activity!!, getBeerListItems()!!,)
 //        beerList.adapter = adapter
-        }
+        
 
     }
 }
