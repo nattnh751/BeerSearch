@@ -43,6 +43,11 @@ class BeerSearchFragment : Fragment() {
         beerList.layoutManager = LinearLayoutManager(context)
         val searchBox = view!!.findViewById<View>(R.id.searchBar) as EditText
         beerList.layoutManager = LinearLayoutManager(context)
+        val searchButton = view!!.findViewById<View>(R.id.searchButton)
+        beerList.layoutManager = LinearLayoutManager(context)
+        searchButton.setOnClickListener(View.OnClickListener {
+            viewListener.onSearchTextUpdated(searchBox.text.toString())
+        })
         searchBox.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
             }
@@ -51,7 +56,6 @@ class BeerSearchFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewListener.onSearchTextUpdated(p0.toString())
             }
         })
         beerList.adapter = activity?.let { BeerListAdapter(createListItemsFromModel(), it) };

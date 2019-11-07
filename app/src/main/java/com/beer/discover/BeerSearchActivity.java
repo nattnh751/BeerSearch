@@ -31,16 +31,31 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
     }
 
     @Override
-    public void onSearchTextUpdated(@NotNull String v) {
-        loadingProgressBar.setVisibility(View.VISIBLE);
-        ApiHelper.searchForBeerWithName(this, this, v);
+    public void onSearchTextUpdated(@NotNull final String v) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingProgressBar.setVisibility(View.VISIBLE);
+                    }
+                });
+                ApiHelper.searchForBeerWithName(BeerSearchActivity.this, BeerSearchActivity.this, v);
+            }
+        }).start();
     }
 
     @Override
-    public void GetBeerComplete(GetBeerResponse response) {
-        loadingProgressBar.setVisibility(View.GONE);
+    public void GetBeerComplete(final GetBeerResponse response) {
         if(response.beers != null) {
-            beerModel.setBeers( response.beers);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadingProgressBar.setVisibility(View.GONE);
+                    beerModel.setBeers( response.beers);
+                }
+            });
         }
     }
 
