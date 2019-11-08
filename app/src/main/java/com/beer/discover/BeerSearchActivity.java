@@ -56,6 +56,14 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
                     beerModel.setBeers( response.beers);
                 }
             });
+        } else {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    //TODO show an empty list placeholder
+
+                }
+            });
         }
     }
 

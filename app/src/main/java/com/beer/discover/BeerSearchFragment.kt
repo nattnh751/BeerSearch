@@ -56,6 +56,7 @@ class BeerSearchFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //TODO clear list when text is empty, also perform search when text has changed instead of button press
             }
         })
         beerList.adapter = activity?.let { BeerListAdapter(createListItemsFromModel(), it) };
@@ -64,6 +65,7 @@ class BeerSearchFragment : Fragment() {
     private fun createListItemsFromModel(): List<BeerItemListResource> {
         var beerlistitems = arrayListOf<BeerItemListResource>();
         for (beir in this.model.beers) {
+            //TODO add image when it is available to list item
             beerlistitems.add(BeerItemListResource(beir.name,beir.description))
         }
         return beerlistitems

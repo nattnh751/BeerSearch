@@ -36,7 +36,7 @@ public class BeerListAdapter(val items: List<BeerItemListResource>,val activity:
         }
 
         override fun onClick(v: View?) {
-
+            //TODO make the click open a view with the full description of the item
         }
     }
 }
