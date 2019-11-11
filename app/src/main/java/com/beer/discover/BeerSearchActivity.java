@@ -79,6 +79,12 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
     @Override
     public void onBeerSelected(@NotNull BeerItemListResource beer) {
         //Todo make a view helper that shows a beer
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                loadingProgressBar.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private class LoadTask extends AsyncTask<String, Void, BeerFragmentModel> {
