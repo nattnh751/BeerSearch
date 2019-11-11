@@ -36,7 +36,12 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
             @Override
             public void run() {
                 if(v.length() <= 0) {
-                    beerModel.setBeers( new ArrayList<Beer>());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            beerModel.setBeers( new ArrayList<Beer>());
+                        }
+                    });
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override

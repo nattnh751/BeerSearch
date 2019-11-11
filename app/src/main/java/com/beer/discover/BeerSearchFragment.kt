@@ -38,7 +38,7 @@ class BeerSearchFragment : Fragment() {
 
     }
     private val updateBeerList = EventListener {
-        if(beerList != null && beerList.adapter != null) {
+        if(beerList != null && beerList.adapter != null && !model.beers.isEmpty()) {
             (beerList.adapter as BeerListAdapter).setNewItems(createListItemsFromModel())
         } else {
             bindViews()
@@ -51,6 +51,7 @@ class BeerSearchFragment : Fragment() {
         val searchBox = view!!.findViewById<View>(R.id.searchBar) as EditText
         beerList.layoutManager = LinearLayoutManager(context)
         val searchButton = view!!.findViewById<View>(R.id.searchButton)
+        val emptyListPlaceHolder = view!!.findViewById<View>(R.id.empty)
         beerList.layoutManager = LinearLayoutManager(context)
         searchButton.setOnClickListener(View.OnClickListener {
             viewListener.onSearchTextUpdated(searchBox.text.toString())
@@ -63,10 +64,22 @@ class BeerSearchFragment : Fragment() {
             }
 
             override fun onTextChanged(newTextChanged: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //TODO clear list when text is empty, also perform search when text has changed instead of button press
+                if (newTextChanged != null) {
+                    if(newTextChanged.length <= 0) {
+                        viewListener.onSearchTextUpdated(searchBox.text.toString())
+                    }
+                } else {
+                    viewListener.onSearchTextUpdated(searchBox.text.toString())
+                }
+                //TODO also perform search when text has changed instead of button press
             }
         })
         beerList.adapter = activity?.let { BeerListAdapter(createListItemsFromModel(), it) };
+        if(model.beers.isEmpty()) {
+            emptyListPlaceHolder.visibility = View.VISIBLE
+        } else {
+            emptyListPlaceHolder.visibility = View.GONE
+        }
     }
 
     private fun createListItemsFromModel(): List<BeerItemListResource> {
