@@ -4,4 +4,6 @@ import android.view.View
 
 interface BeerFragmentListener {
     fun onSearchTextUpdated(v: String)
+    fun onBeerSelected(beer: BeerItemListResource)
+
 }

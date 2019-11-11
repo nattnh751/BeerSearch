@@ -1,27 +1,19 @@
 package com.beer.discover
 
-import android.app.Activity
-import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
-import android.system.Os.bind
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.beer_fragment.*
 
 class BeerSearchFragment : Fragment() {
+
     lateinit var model: BeerFragmentModel
     lateinit var viewListener: BeerFragmentListener
     lateinit var beerAdapter: BeerListAdapter
@@ -40,6 +32,8 @@ class BeerSearchFragment : Fragment() {
     private val updateBeerList = EventListener {
         if(beerList != null && beerList.adapter != null && !model.beers.isEmpty()) {
             (beerList.adapter as BeerListAdapter).setNewItems(createListItemsFromModel())
+            val emptyListPlaceHolder = view!!.findViewById<View>(R.id.empty)
+            emptyListPlaceHolder.visibility = View.GONE
         } else {
             bindViews()
         }
@@ -74,7 +68,7 @@ class BeerSearchFragment : Fragment() {
                 //TODO also perform search when text has changed instead of button press
             }
         })
-        beerList.adapter = activity?.let { BeerListAdapter(createListItemsFromModel(), it) };
+        beerList.adapter = activity?.let { BeerListAdapter(createListItemsFromModel(), it, viewListener) };
         if(model.beers.isEmpty()) {
             emptyListPlaceHolder.visibility = View.VISIBLE
         } else {
@@ -86,12 +80,12 @@ class BeerSearchFragment : Fragment() {
         var beerlistitems = arrayListOf<BeerItemListResource>();
         for (beir in this.model.beers) {
             //TODO add image when it is available to list item
-            beerlistitems.add(BeerItemListResource(beir.name,beir.description))
+            beerlistitems.add(BeerItemListResource(beir.name,beir.description,beir.id))
         }
         return beerlistitems
     }
 }
 
-class BeerItemListResource(val title: String, val descriptions: String) {
+class BeerItemListResource(val title: String, val descriptions: String, val id: Int) {
 
 }

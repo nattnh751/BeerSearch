@@ -76,6 +76,11 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
         }
     }
 
+    @Override
+    public void onBeerSelected(@NotNull BeerItemListResource beer) {
+        //Todo make a view helper that shows a beer
+    }
+
     private class LoadTask extends AsyncTask<String, Void, BeerFragmentModel> {
         @Override
         protected BeerFragmentModel doInBackground(String... urls) {

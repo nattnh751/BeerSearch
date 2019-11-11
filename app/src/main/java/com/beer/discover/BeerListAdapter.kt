@@ -4,14 +4,10 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-public class BeerListAdapter(var items: List<BeerItemListResource>,val activity: Activity) : RecyclerView.Adapter<BeerListAdapter.ViewHolder>() {
+public class BeerListAdapter(var items: List<BeerItemListResource>,val activity: Activity, val adapterListner: BeerFragmentListener?) : RecyclerView.Adapter<BeerListAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return items.size
     }
@@ -41,7 +37,10 @@ public class BeerListAdapter(var items: List<BeerItemListResource>,val activity:
         }
 
         override fun onClick(v: View?) {
-            //TODO make the click open a view with the full description of the item
+            val beerItem = items[adapterPosition]
+            if(adapterListner != null) {
+                adapterListner.onBeerSelected(beerItem)
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="b"
     android:layout_height="fill_parent">
     <EditText
         android:layout_width="wrap_content"
@@ -17,8 +17,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:onClick="search"
-        android:text="Search"
+        android:text="@string/search_text"
         android:id="@+id/searchButton"
         android:textColor="#FFFFFF"
         android:layout_height="64dp"/>
@@ -42,7 +41,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Results"
+            android:text="@string/empty_list_placeholder"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 </RelativeLayout>
