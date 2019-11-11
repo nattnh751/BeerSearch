@@ -19,11 +19,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.beer_fragment.*
 
 class BeerSearchFragment : Fragment() {
     lateinit var model: BeerFragmentModel
     lateinit var viewListener: BeerFragmentListener
-
+    lateinit var beerAdapter: BeerListAdapter
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,7 +37,13 @@ class BeerSearchFragment : Fragment() {
         model.addListener(BeerFragmentModel.ChangeEvent.BEER_LIST_UPDATED, updateBeerList)
 
     }
-    private val updateBeerList = EventListener { bindViews() }
+    private val updateBeerList = EventListener {
+        if(beerList != null && beerList.adapter != null) {
+            (beerList.adapter as BeerListAdapter).setNewItems(createListItemsFromModel())
+        } else {
+            bindViews()
+        }
+    }
 
     private fun bindViews() {
         val beerList = view!!.findViewById<View>(R.id.beerList) as RecyclerView
@@ -55,7 +62,7 @@ class BeerSearchFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            override fun onTextChanged(newTextChanged: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //TODO clear list when text is empty, also perform search when text has changed instead of button press
             }
         })

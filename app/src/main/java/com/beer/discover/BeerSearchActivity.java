@@ -35,13 +35,17 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
         new Thread(new Runnable() {
             @Override
             public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadingProgressBar.setVisibility(View.VISIBLE);
-                    }
-                });
-                ApiHelper.searchForBeerWithName(BeerSearchActivity.this, BeerSearchActivity.this, v);
+                if(v.length() <= 0) {
+                    beerModel.setBeers( new ArrayList<Beer>());
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingProgressBar.setVisibility(View.VISIBLE);
+                        }
+                    });
+                    ApiHelper.searchForBeerWithName(BeerSearchActivity.this, BeerSearchActivity.this, v);
+                }
             }
         }).start();
     }
@@ -60,8 +64,8 @@ public class BeerSearchActivity extends MainActivity implements BeerFragmentList
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //TODO show an empty list placeholder
-
+                    loadingProgressBar.setVisibility(View.GONE);
+                    beerModel.setBeers( response.beers);
                 }
             });
         }

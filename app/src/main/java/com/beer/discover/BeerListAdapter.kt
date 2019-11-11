@@ -11,9 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-public class BeerListAdapter(val items: List<BeerItemListResource>,val activity: Activity) : RecyclerView.Adapter<BeerListAdapter.ViewHolder>() {
+public class BeerListAdapter(var items: List<BeerItemListResource>,val activity: Activity) : RecyclerView.Adapter<BeerListAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    fun setNewItems(newItems: List<BeerItemListResource>) {
+        items = newItems
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
